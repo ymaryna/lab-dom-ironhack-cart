@@ -28,6 +28,15 @@ function getTotalPrice() {
 }
 
 function createQuantityInput(){
+  const newQuantityInputDiv = document.createElement("div")
+  newQuantityInputDiv.setAttribute("class", "input-field")
+  const newQuantityInput = document.createElement("input")
+  newQuantityInput.setAttribute("name", "QTY")
+  newQuantityInput.setAttribute("type", "text")
+  newQuantityInput.setAttribute("placeholder", "0")
+  newQuantityInputDiv.appendChild(newQuantityInput)
+  return newQuantityInputDiv
+
 
 }
 
@@ -44,20 +53,31 @@ function createItemNode(dataType, itemData){
 }
 
 function createNewItemRow(itemName, itemUnitPrice){
+  const newItemRow = document.createElement("div")
+  newItemRow.setAttribute("class", "container")
+  newItemRow.appendChild(createQuantityInput())
+  const father = document.getElementById("father")
+  father.appendChild(newItemRow)
 
 }
 
 function createNewItem(){
+  const newProductName = document.querySelector(".name-create").value
+  const newProductPrice = document.querySelector(".price-create").value
 
+  createNewItemRow(newProductName,newProductPrice)
+
+
+  
 }
 
 window.onload = function(){
   var calculatePriceButton = document.getElementById('calc-prices-button');
-  var createItemButton = document.getElementById('new-item-create');
+  var createItemButton = document.getElementById('create-button');
   var deleteButtons = document.getElementsByClassName('btn-delete');
 
   calculatePriceButton.onclick = getTotalPrice;
-  //createItemButton.onclick = createNewItem;
+  createItemButton.onclick = createNewItem;
 
   for(var i = 0; i<deleteButtons.length ; i++){
     deleteButtons[i].onclick = deleteItem;
